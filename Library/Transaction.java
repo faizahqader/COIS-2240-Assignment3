@@ -1,5 +1,8 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class Transaction {
 	private static Transaction instance;
@@ -19,6 +22,7 @@ public class Transaction {
             book.borrowBook();
             member.borrowBook(book); 
             String transactionDetails = getCurrentDateTime() + " - Borrowing: " + member.getName() + " borrowed " + book.getTitle();
+            saveTransaction(transactionDetails);
             System.out.println(transactionDetails);
             return true;
         } else {
@@ -33,6 +37,7 @@ public class Transaction {
             member.returnBook(book);
             book.returnBook();
             String transactionDetails = getCurrentDateTime() + " - Returning: " + member.getName() + " returned " + book.getTitle();
+            saveTransaction(transactionDetails);
             System.out.println(transactionDetails);
         } else {
             System.out.println("This book was not borrowed by the member.");
@@ -43,5 +48,16 @@ public class Transaction {
     private String getCurrentDateTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return sdf.format(new Date());
+    }
+    
+    // task2 (2) saveTransaction method
+    public void saveTransaction(String transactionDetails) {
+    	try (BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.txt", true))) {
+    		writer.write(transactionDetails);
+    		writer.newlinw();
+    	} catch (IOException e) {
+    		System.out.println("Error saving transaction: " + e.getMessage());
+    	}
+    	
     }
 }
