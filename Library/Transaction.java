@@ -54,7 +54,7 @@ public class Transaction {
     public void saveTransaction(String transactionDetails) {
     	try (BufferedWriter writer = new BufferedWriter(new FileWriter("transactions.txt", true))) {
     		writer.write(transactionDetails);
-    		writer.newlinw();
+    		writer.newLine();
     	} catch (IOException e) {
     		System.out.println("Error saving transaction: " + e.getMessage());
     	}
