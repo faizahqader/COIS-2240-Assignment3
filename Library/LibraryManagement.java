@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class LibraryManagement {
     private Library library = new Library();
-    private Transaction transaction = Transaction.getTransaction?();
+    private Transaction transaction = Transaction.getTransaction();
 
     public static void main(String[] args) {
         new LibraryManagement().run();

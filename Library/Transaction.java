@@ -60,4 +60,23 @@ public class Transaction {
     	}
     	
     }
+    
+    // task2 (3) displayTransactionHistory‬‭ method‬
+    public void displayTransactionHistory() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("transactions.txt"))) {
+            String line;
+            System.out.println("Transaction History: ");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.out.println("No transaction found or an error occurred: " + e.getMessage());
+        }
+    }
 }
+
+
+
+
+
+
